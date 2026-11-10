@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <script>try{var t=localStorage.getItem("ampa-theme")||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
-<title>11AMPA | Claude, GitHub ve Vercel ile Web Sitesi Yapımı</title>
+<title>GÖÇPAL | Claude, GitHub ve Vercel ile Web Sitesi Yapımı</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Literata:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -119,7 +119,7 @@ a.tile .go{display:inline-block;margin-top:.7rem;color:var(--navy);font:700 .9re
 .contact{grid-template-columns:1fr}
 .steps>li{grid-template-columns:2.4rem 1fr;gap:.8rem}
 .steps>li::before{width:2.4rem;height:2.4rem;font-size:1.1rem}
-.hero{gap:1.5rem;padding:2rem 0}
+.hero{gap:1.5rem;padding-top:2rem;padding-bottom:2rem}
 section{padding:2.2rem 0}
 .btn,.wa{width:100%;text-align:center;justify-content:center}
 .ib{width:2.75rem;height:2.75rem}
@@ -140,15 +140,74 @@ footer .logo{width:56px;height:56px;margin:0 auto .5rem}
 .num-btn{background:transparent;border:2px dashed var(--navy);color:var(--navy);border-radius:8px;padding:.7rem 1rem;font:700 1.05rem "Bricolage Grotesque",sans-serif;cursor:pointer;min-height:48px;margin:.2rem 0 1rem;width:100%}
 .num-btn:hover{background:var(--bg)}
 button.waf{border:0;cursor:pointer;padding:0}
+.wrap.hero{padding-left:1.25rem;padding-right:1.25rem}
+@media (max-width:380px){.wrap.hero{padding-left:.9rem;padding-right:.9rem}}
+/* ---- Mobil taşma düzeltmesi ---- */
+.steps,.steps>li,.steps>li>div,.cbox,.tile{min-width:0}
+pre{max-width:100%}
+@media (max-width:760px){pre{white-space:pre-wrap;overflow-wrap:anywhere;padding-top:2.6rem}}
+/* ---- Mobil dokunma ve gezinme iyileştirmeleri ---- */
+html{scroll-padding-top:4.5rem}
+a,button,summary,label{-webkit-tap-highlight-color:rgba(20,33,61,.12);touch-action:manipulation}
+@media (max-width:760px){
+.searchbar .cnt{display:block}
+.chk{min-height:44px;font-size:1rem;gap:.7rem}
+.chk input{width:1.5rem;height:1.5rem}
+summary{min-height:44px;display:flex;align-items:center}
+.cp{min-height:36px;padding:.45rem .9rem;font-size:.85rem}
+.track button{min-height:40px;padding:.5rem .9rem;font-size:.9rem}
+.track .bar2{flex-basis:100%;order:3}
+main{padding-bottom:5.5rem}
+.waf{width:3.4rem;height:3.4rem}
+#topBtn{width:3rem;height:3rem}
+}
+/* ---- VFX ---- */
+.herofx{position:relative;overflow:hidden;isolation:isolate}
+.herofx::before,.herofx::after{content:"";position:absolute;z-index:-1;width:42vmax;height:42vmax;border-radius:50%;filter:blur(70px);opacity:.16;pointer-events:none;will-change:transform}
+.herofx::before{left:-14vmax;top:-16vmax;background:var(--navy);animation:drift 15s ease-in-out infinite alternate}
+.herofx::after{right:-16vmax;bottom:-20vmax;background:var(--red);animation:drift 19s ease-in-out infinite alternate-reverse}
+:root[data-theme="dark"] .herofx::before,:root[data-theme="dark"] .herofx::after{opacity:.24}
+#fx{position:absolute;inset:0;width:100%;height:100%;z-index:0;display:block}
+.herofx .hero{position:relative;z-index:1}
+@keyframes drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(8vmax,5vmax,0) scale(1.18)}}
+.hero h1{background:linear-gradient(90deg,var(--navy) 0%,var(--red) 50%,var(--navy) 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:shine 7s linear infinite;padding-top:.12em;margin-top:-.12em;display:inline-block}
+@keyframes shine{to{background-position:-220% 0}}
+.hero .logo{position:relative;overflow:hidden;animation:floaty 6s ease-in-out infinite}
+.hero .logo::after{content:"";position:absolute;inset:0;border-radius:50%;background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.6) 50%,transparent 58%);background-size:260% 100%;background-position:210% 0;animation:sheen 5.5s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes sheen{0%,55%{background-position:210% 0}100%{background-position:-110% 0}}
+.hero .logo{filter:drop-shadow(0 10px 24px rgba(214,40,57,.25))}
+.btn{position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(27,58,130,.35)}
+.btn::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);animation:btnshine 4.5s ease-in-out infinite}
+@keyframes btnshine{0%,60%{left:-60%}100%{left:130%}}
+.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.55);transform:scale(0);animation:rip .6s ease-out forwards;pointer-events:none}
+@keyframes rip{to{transform:scale(1);opacity:0}}
+a.tile{position:relative;overflow:hidden}
+a.tile::before{content:"";position:absolute;inset:0;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(214,40,57,.13),transparent 60%);opacity:0;transition:opacity .25s;pointer-events:none}
+a.tile:hover::before{opacity:1}
+a.tile.rv{transition:opacity .55s ease var(--d,0s),transform .55s ease var(--d,0s),box-shadow .2s,border-color .2s}
+a.tile.rv.done{transition:transform .2s,box-shadow .2s,border-color .2s}
+.rv{transition-delay:var(--d,0s)}
+.rv.done{transition-delay:0s}
+.progress::after{box-shadow:0 0 10px var(--red)}
+.steps>li.done::before{animation:pop .45s ease}
+@keyframes pop{0%{transform:scale(.6)}60%{transform:scale(1.25)}100%{transform:scale(1)}}
+#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:30}
+@media (prefers-reduced-motion:reduce){
+.herofx::before,.herofx::after,.hero h1,.hero .logo,.hero .logo::after,.btn::after,.steps>li.done::before{animation:none}
+#fx{display:none}
+.hero h1{-webkit-text-fill-color:var(--navy);color:var(--navy);background:none}
+}
 </style>
 </head>
 <body>
 <header><div class="bar">
-<a class="brand" href="#top"><span class="logo" role="img" aria-label="Gülten Özaydın Çok Programlı Anadolu Lisesi logosu"></span>11AMPA</a>
-<nav id="mainNav" aria-label="Ana menü"><a href="#nedir">Genel bakış</a><a href="#adimlar">Adımlar</a><a href="#araclar">Araçlar</a><a href="#sss">Sık sorulanlar</a><a href="#kaynaklar">Kaynaklar</a><a href="#iletisim">İletişim</a></nav>
+<a class="brand" href="#top"><span class="logo" role="img" aria-label="Gülten Özaydın Çok Programlı Anadolu Lisesi logosu"></span>GÖÇPAL</a>
+<nav id="mainNav" aria-label="Ana menü"><a href="#nedir">Genel bakış</a><a href="#adimlar">Adımlar</a><a href="#araclar">Araçlar</a><a href="#sss">Sık sorulanlar</a><a href="#kaynaklar">Kaynaklar</a></nav>
 <div class="tools">
 <button class="ib" id="searchBtn" type="button" aria-label="Sayfada ara" aria-expanded="false"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
-<button class="ib" id="themeBtn" type="button" aria-label="Temayı değiştir">◐</button>
+<button class="ib" id="themeBtn" type="button" aria-label="Temayı değiştir"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg></button>
 <button class="ib" id="menuBtn" type="button" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mainNav">☰</button>
 </div>
 </div>
@@ -156,13 +215,15 @@ button.waf{border:0;cursor:pointer;padding:0}
 <div class="progress" id="pg" aria-hidden="true"></div></header>
 
 <main id="top">
+<div class="herofx" id="herofx"><canvas id="fx" aria-hidden="true"></canvas>
 <div class="wrap hero">
 <div>
-<h1>11AMPA</h1>
+<h1>GÖÇPAL</h1>
 <p>Claude ile fikrini kodlayın, GitHub'da saklayın, Vercel ile tek tıkla yayına alın. Kendi web sitenizi sıfırdan yayınlamanın sade ve profesyonel rehberi.</p>
 <a class="btn" href="#adimlar">Adımlara başla</a>
 </div>
 <span class="logo" role="img" aria-label="Gülten Özaydın Çok Programlı Anadolu Lisesi, 2012"></span>
+</div>
 </div>
 
 <section id="nedir"><div class="wrap">
@@ -186,18 +247,18 @@ Renkler lacivert ve beyaz olsun. Bölümler: Hakkımızda, Etkinlikler, İletiş
 Tek bir index.html dosyası olarak ver.</code></pre>
 <p>Çıkan kodu kontrol edin, beğenmediğiniz yeri “başlığı büyüt”, “menüyü sadeleştir” gibi cümlelerle düzeltin. Sonunda kodu <strong>index.html</strong> adıyla bilgisayarınıza kaydedin.</p></div></li>
 <li><div><h3>GitHub hesabı ve depo (repository) oluşturun</h3>
-<p>github.com'da ücretsiz hesap açın. Sağ üstteki <strong>+</strong> simgesinden <strong>New repository</strong>'yi seçin, depoya <em>11ampa-site</em> gibi bir ad verin ve <strong>Public</strong> olarak oluşturun.</p>
+<p>github.com'da ücretsiz hesap açın. Sağ üstteki <strong>+</strong> simgesinden <strong>New repository</strong>'yi seçin, depoya <em>gocpal-site</em> gibi bir ad verin ve <strong>Public</strong> olarak oluşturun.</p>
 <p>Ardından <strong>uploading an existing file</strong> bağlantısıyla index.html dosyanızı yükleyin ve <strong>Commit changes</strong> düğmesine basın. Komut satırını tercih ederseniz:</p>
 <pre><button class="cp">Kopyala</button><code>git init
 git add .
 git commit -m "İlk sürüm"
 git branch -M main
-git remote add origin https://github.com/KULLANICI_ADIN/11ampa-site.git
+git remote add origin https://github.com/KULLANICI_ADIN/gocpal-site.git
 git push -u origin main</code></pre></div></li>
 <li><div><h3>Vercel'e GitHub ile giriş yapın</h3>
 <p>vercel.com adresinde <strong>Continue with GitHub</strong> seçeneğiyle giriş yapın. Böylece Vercel, GitHub depolarınızı görebilir.</p></div></li>
 <li><div><h3>Projeyi içe aktarıp yayına alın</h3>
-<p>Vercel panelinde <strong>Add New → Project</strong>'e tıklayın, listeden <em>11ampa-site</em> deposunu bulup <strong>Import</strong> deyin. Ayarlara dokunmadan <strong>Deploy</strong>'a basın. Bir iki dakika içinde <code>proje-adiniz.vercel.app</code> adresinde siteniz yayında olur.</p></div></li>
+<p>Vercel panelinde <strong>Add New → Project</strong>'e tıklayın, listeden <em>gocpal-site</em> deposunu bulup <strong>Import</strong> deyin. Ayarlara dokunmadan <strong>Deploy</strong>'a basın. Bir iki dakika içinde <code>proje-adiniz.vercel.app</code> adresinde siteniz yayında olur.</p></div></li>
 <li><div><h3>Güncelleyin ve geliştirin</h3>
 <p>Claude'dan yeni bir sürüm isteyin, GitHub'da <strong>index.html</strong> dosyasını açıp kalem simgesiyle yeni kodu yapıştırın ve kaydedin. Vercel değişikliği fark eder ve siteyi kendiliğinden yeniler. İsterseniz Vercel'deki <strong>Domains</strong> bölümünden kendi alan adınızı da bağlayabilirsiniz.</p></div></li>
 </ol>
@@ -235,30 +296,8 @@ git push -u origin main</code></pre></div></li>
 <details><summary>Yaptığım değişiklik sitede görünmüyor, ne yapmalıyım?</summary><p>Vercel panelinde <strong>Deployments</strong> sekmesine bakın. Yayın tamamlandıysa tarayıcıda sayfayı Ctrl+F5 ile yenileyin.</p></details>
 </div></section>
 <p id="noRes" hidden>Aramanla eşleşen bir sonuç bulunamadı.</p>
-<section id="iletisim"><div class="wrap">
-<h2>İletişim</h2>
-<p class="lead">Soru, öneri ya da yardım için bana WhatsApp’tan yazabilirsiniz.</p>
-<div class="contact">
-<div class="cbox">
-<h3>Hızlı ulaşın</h3>
-<p>Numara güvenlik için gizli. Butona tıklayınca görünür.</p>
-<button class="num-btn" type="button" id="showNum">Numarayı göster</button>
-<a class="num" id="numOut" hidden></a>
-<button class="wa" type="button" data-wa="Merhaba, siteniz hakkında yazmak istiyorum."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.7-5.2A8.5 8.5 0 1 1 21 11.5z"/><path d="M9 8.5c.3 2.5 2.7 5 5.5 5.5l1.3-1.3-2-1-.9.7a4 4 0 0 1-1.8-1.8l.7-.9-1-2z"/></svg>WhatsApp’tan yaz</button>
-</div>
-<div class="cbox">
-<h3>Mesaj hazırla</h3>
-<p>Formu doldurun, mesajınız WhatsApp’ta hazır şekilde açılsın.</p>
-<label for="fAd">Adınız</label><input id="fAd" type="text" autocomplete="name" maxlength="60">
-<label for="fMsj">Mesajınız</label><textarea id="fMsj" maxlength="600"></textarea>
-<p id="fErr" role="alert"></p>
-<button class="wa" type="button" id="fGo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.7-5.2A8.5 8.5 0 1 1 21 11.5z"/><path d="M9 8.5c.3 2.5 2.7 5 5.5 5.5l1.3-1.3-2-1-.9.7a4 4 0 0 1-1.8-1.8l.7-.9-1-2z"/></svg>WhatsApp’ta gönder</button>
-</div>
-</div>
-</div></section>
 </main>
 
-<button class="waf" id="waFloat" type="button" data-wa="Merhaba!" aria-label="WhatsApp ile yaz"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.7-5.2A8.5 8.5 0 1 1 21 11.5z"/><path d="M9 8.5c.3 2.5 2.7 5 5.5 5.5l1.3-1.3-2-1-.9.7a4 4 0 0 1-1.8-1.8l.7-.9-1-2z"/></svg></button>
 <button id="topBtn" type="button" aria-label="Yukarı çık"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 <footer>
 <span class="logo" role="img" aria-label="Okul logosu"></span>
@@ -286,6 +325,8 @@ var nav=$("mainNav"),mb=$("menuBtn");
 function menu(o){nav.classList.toggle("open",o);mb.setAttribute("aria-expanded",o);mb.textContent=o?"✕":"☰"}
 mb.addEventListener("click",function(){menu(!nav.classList.contains("open"))});
 nav.addEventListener("click",function(e){if(e.target.tagName==="A")menu(false)});
+document.addEventListener("click",function(e){if(nav.classList.contains("open")&&!nav.contains(e.target)&&!mb.contains(e.target))menu(false)});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")menu(false)});
 
 /* Adım takip listesi */
 var steps=[].slice.call(document.querySelectorAll(".steps>li")),saved={};
@@ -314,7 +355,7 @@ function run(){var v=q.value.trim().toLocaleLowerCase("tr"),total=0,any=false;
   if(it.el.tagName==="DETAILS")it.el.open=!!v&&m;if(m)hit++});
   g.sec.hidden=!!v&&hit===0;total+=hit;if(!g.sec.hidden)any=true});
  cnt.textContent=v?total+" sonuç":"";no.hidden=!v||any;
- tr.hidden=!!v}
+ tr.hidden=!!v;var hr=document.querySelector(".hero");if(hr)hr.hidden=!!v;if(v&&any)scrollTo({top:0})}
 sbtn.addEventListener("click",function(){openSearch(sb.hidden)});
 q.addEventListener("input",run);
 q.addEventListener("keydown",function(e){if(e.key==="Escape")openSearch(false)});
@@ -322,25 +363,48 @@ document.addEventListener("keydown",function(e){if(e.key==="/"&&!/INPUT|TEXTAREA
 
 /* Kaydırınca beliren animasyonlar */
 if("IntersectionObserver" in window&&!matchMedia("(prefers-reduced-motion:reduce)").matches){
- var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.12});
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");setTimeout(function(t){t.classList.add("done")},1300,e.target);io.unobserve(e.target)}})},{threshold:.12});
  document.querySelectorAll("section h2,.lead,.tile,.steps>li,details").forEach(function(el){el.classList.add("rv");io.observe(el)});
 }
 })();
 </script>
 <script>
 (function(){
-var P=["90","551","586","53","38"];
-function num(){return P.join("")}
-function wa(t){var l=document.createElement("a");l.href="https://wa.me/"+num()+"?text="+encodeURIComponent(t);l.target="_blank";l.rel="noopener noreferrer";document.body.appendChild(l);l.click();l.remove()}
-document.querySelectorAll("[data-wa]").forEach(function(b){b.addEventListener("click",function(){wa(b.getAttribute("data-wa"))})});
-var sh=document.getElementById("showNum"),out=document.getElementById("numOut");
-if(sh)sh.addEventListener("click",function(){var n=num();out.textContent="0"+n.slice(2,5)+" "+n.slice(5,8)+" "+n.slice(8,10)+" "+n.slice(10);out.href="tel:+"+n;out.hidden=false;sh.hidden=true});
-var go=document.getElementById("fGo");
-if(go)go.addEventListener("click",function(){
- var a=document.getElementById("fAd").value.trim(),m=document.getElementById("fMsj").value.trim(),e=document.getElementById("fErr");
- if(!a||!m){e.textContent="Lütfen adınızı ve mesajınızı yazın.";return}
- e.textContent="";wa("Merhaba, ben "+a+". "+m);
-});
+var reduce=matchMedia("(prefers-reduced-motion:reduce)").matches,root=document.documentElement;
+/* kademeli beliriş */
+document.querySelectorAll(".grid").forEach(function(g){[].slice.call(g.children).forEach(function(c,i){c.style.setProperty("--d",Math.min(i*90,450)+"ms")})});
+/* kart ışığı */
+document.querySelectorAll("a.tile").forEach(function(t){t.addEventListener("pointermove",function(e){var r=t.getBoundingClientRect();t.style.setProperty("--mx",(e.clientX-r.left)+"px");t.style.setProperty("--my",(e.clientY-r.top)+"px")})});
+/* buton dalgası */
+document.querySelectorAll(".btn").forEach(function(b){b.addEventListener("pointerdown",function(e){if(reduce)return;var r=b.getBoundingClientRect(),d=Math.max(r.width,r.height)*2,s=document.createElement("span");s.className="ripple";s.style.cssText="width:"+d+"px;height:"+d+"px;left:"+(e.clientX-r.left-d/2)+"px;top:"+(e.clientY-r.top-d/2)+"px";b.appendChild(s);setTimeout(function(){s.remove()},650)})});
+if(reduce)return;
+
+/* parçacık ağı */
+var box=document.getElementById("herofx"),cv=document.getElementById("fx"),ctx=cv.getContext("2d"),W=0,H=0,dpr=Math.min(devicePixelRatio||1,2),pts=[],mouse={x:-999,y:-999},rgb=[27,58,130],run=true,vis=true;
+function col(){var v=getComputedStyle(root).getPropertyValue("--navy").trim();if(v[0]==="#"&&v.length===7)rgb=[parseInt(v.substr(1,2),16),parseInt(v.substr(3,2),16),parseInt(v.substr(5,2),16)]}
+function size(){var r=box.getBoundingClientRect();W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+ var n=W<600?30:Math.round(Math.min(70,W/18));pts=[];for(var i=0;i<n;i++)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,r:Math.random()*1.6+1})}
+function frame(){requestAnimationFrame(frame);if(!vis||document.hidden)return;
+ ctx.clearRect(0,0,W,H);var c=rgb.join(","),L=W<600?95:130;
+ for(var i=0;i<pts.length;i++){var p=pts[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
+  var dx=p.x-mouse.x,dy=p.y-mouse.y,dm=Math.hypot(dx,dy);if(dm<110){p.x+=dx/dm*1.2;p.y+=dy/dm*1.2}
+  ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.283);ctx.fillStyle="rgba("+c+",.55)";ctx.fill();
+  for(var j=i+1;j<pts.length;j++){var q=pts[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<L){ctx.strokeStyle="rgba("+c+","+(.22*(1-d/L))+")";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke()}}
+  if(dm<150){ctx.strokeStyle="rgba(214,40,57,"+(.4*(1-dm/150))+")";ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(mouse.x,mouse.y);ctx.stroke()}}}
+col();size();frame();
+if("ResizeObserver" in window)new ResizeObserver(function(){size()}).observe(box);else addEventListener("resize",size);
+box.addEventListener("pointermove",function(e){var r=box.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top});
+box.addEventListener("pointerleave",function(){mouse.x=mouse.y=-999});
+if("IntersectionObserver" in window)new IntersectionObserver(function(es){vis=es[0].isIntersecting}).observe(box);
+new MutationObserver(col).observe(root,{attributes:true,attributeFilter:["data-theme"]});
+
+/* konfeti: 5 adım da bitince */
+var steps=document.querySelector(".steps");
+if(steps)steps.addEventListener("change",function(){var all=[].slice.call(steps.querySelectorAll("input")).every(function(i){return i.checked});if(all)confetti()});
+function confetti(){var c=document.createElement("canvas");c.id="confetti";document.body.appendChild(c);var x=c.getContext("2d"),w=c.width=innerWidth,h=c.height=innerHeight,cols=["#d62839","#1b3a82","#f4b942","#2e8b57","#7d9cf0"],ps=[];
+ for(var i=0;i<130;i++)ps.push({x:w/2+(Math.random()-.5)*w*.3,y:h*.55,vx:(Math.random()-.5)*14,vy:-Math.random()*15-4,s:Math.random()*7+4,a:Math.random()*6,va:(Math.random()-.5)*.35,c:cols[i%cols.length]});
+ var t0=performance.now();(function f(t){var k=t-t0;x.clearRect(0,0,w,h);ps.forEach(function(p){p.vy+=.38;p.vx*=.992;p.x+=p.vx;p.y+=p.vy;p.a+=p.va;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.globalAlpha=Math.max(0,1-k/3200);x.fillStyle=p.c;x.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);x.restore()});
+  if(k<3300)requestAnimationFrame(f);else c.remove()})(t0)}
 })();
 </script>
 </body>
