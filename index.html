@@ -97,7 +97,7 @@ footer p{margin:.2rem 0;font:500 1rem "Bricolage Grotesque",sans-serif}
 #confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:30}
 /* Logo VFX */
 .logofx{position:relative;isolation:isolate;width:100%;max-width:360px;justify-self:center;perspective:800px;animation:floaty 6s ease-in-out infinite}
-.hero .logofx .logo{width:100%;max-width:none;animation:none;position:relative;overflow:hidden;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .18s ease-out;box-shadow:0 0 0 8px var(--surface),0 0 0 10px var(--red),0 18px 40px rgba(20,33,61,.28)}
+.hero .logofx .logo{width:100%;max-width:none;animation:none;position:relative;overflow:hidden;box-shadow:0 0 0 8px var(--surface),0 0 0 10px var(--red),0 18px 40px rgba(20,33,61,.28)}
 .logofx .logo::after{content:"";position:absolute;inset:0;border-radius:50%;background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.65) 50%,transparent 58%);background-size:260% 100%;background-position:210% 0;animation:sheen 5s ease-in-out infinite}
 .logofx::before{content:"";position:absolute;inset:-20px;border-radius:50%;background:conic-gradient(from 0deg,#1d3c8f,#2e9bd6,transparent 45%,#1d3c8f);filter:blur(24px);opacity:.5;z-index:-1}
 .logofx::after{content:"";position:absolute;inset:-10px;border-radius:50%;border:2px solid #1d3c8f;opacity:0;animation:pulse 3.2s ease-out infinite;pointer-events:none}
@@ -319,13 +319,6 @@ if(!reduce){
  if("IntersectionObserver" in window)new IntersectionObserver(function(es){vis=es[0].isIntersecting}).observe(hero);
  new MutationObserver(col).observe(root,{attributes:true,attributeFilter:["data-theme"]});
 }
-
-/* Logo eğilme efekti */
-var lfx=$("logofx");
-if(lfx&&!reduce&&matchMedia("(hover:hover)").matches){var lg=lfx.querySelector(".logo");
- hero.addEventListener("pointermove",function(e){var r=lfx.getBoundingClientRect(),x=(e.clientX-r.left-r.width/2)/(r.width/2),y=(e.clientY-r.top-r.height/2)/(r.height/2);
-  x=Math.max(-1.5,Math.min(1.5,x));y=Math.max(-1.5,Math.min(1.5,y));lg.style.setProperty("--ry",(x*14)+"deg");lg.style.setProperty("--rx",(-y*14)+"deg")});
- hero.addEventListener("pointerleave",function(){lg.style.setProperty("--ry","0deg");lg.style.setProperty("--rx","0deg")})}
 
 /* Konfeti */
 function confetti(){if(reduce)return;var c=document.createElement("canvas");c.id="confetti";document.body.appendChild(c);
